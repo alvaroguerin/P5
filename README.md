@@ -28,35 +28,45 @@ visualizar el funcionamiento de la curva ADSR.
 * Un instrumento con una envolvente ADSR genérica, para el que se aprecie con claridad cada uno de sus parámetros:
   ataque (A), caída (D), mantenimiento (S) y liberación (R).
   
+    #### GENÉRICA
     <img src="GENERICA.jpeg" width="300" align="center"> 
     
-    Esta gráfica presenta un tiempo de *decay* largo acompañado de un tiempo final de *release* muy corto. Seguidamente, los tiempos de * attack* y de *sustain* notables pero no tan amplios como el de *decay*. 
+   > Esta gráfica presenta un tiempo de *decay* largo acompañado de un tiempo final de *release* muy corto. Seguidamente, los tiempos de * attack* y de *sustain* notables pero no tan amplios como el de *decay*. 
   
 * Un instrumento *percusivo*, como una guitarra o un piano, en el que el sonido tenga un ataque rápido, no haya
   mantenimiemto y el sonido se apague lentamente.
   - Para un instrumento de este tipo, tenemos dos situaciones posibles:
     * El intérprete mantiene la nota *pulsada* hasta su completa extinción.
     
+    #### PERCUSIVA_1
     <img src="PECURSIVA_1.jpeg" width="300" align="center">  
-    
-    Esta gráfica presenta un tiempo de *decay* largo acompañado de un tiempo final de *release* muy corto. Seguidamente, los tiempos de * attack* y de *sustain* notables pero no tan amplios como el de *decay*. 
-  
     
     * El intérprete da por finalizada la nota antes de su completa extinción, iniciándose una disminución rápida del
       sonido hasta su finalización.
-      
-    <img src="PECURSIVA_2.jpeg" width="300" align="center">   
-      
+    
+    #### PECURSIVA_2
+    <img src="PECURSIVA_2.jpeg" width="300" align="center"> 
+    
+   >Estas dos gráficas presentan un tiempo de *decay* muy largo acompañado de un tiempo final de *release* muy largo también en el caso de la primera y notable en la segunda. Seguidamente, los tiempos de *attack* y de *sustain* son tendiendo a nulos y nulos respectivamente.
+    
+    
   - Debera representar en esta memoria **ambos** posibles finales de la nota.
+  
 * Un instrumento *plano*, como los de cuerdas frotadas (violines y semejantes) o algunos de viento. En ellos, el
   ataque es relativamente rápido hasta alcanzar el nivel de mantenimiento (sin sobrecarga), y la liberación también
   es bastante rápida.
+  
+  
+#### PLANA
+<img src="PLANA.jpeg" width="300" align="center"> 
+
+>La plana como cabía esperar no tiene tiempo de *decay*. Los otros tiempos son 
 
   | **Envolventes ADSR**   | ADSR_A | ADSR_D | ADSR_S | ADSR_R |
   |------------------------|:------:|:------:|:------:|:------:|
   | Genérica     	         | 0.3    |  0.5   |  0.4   |  0.2   |
-  | Percursiva_1           | 0.01   |  0.4   |  0     |  0.1   |
-  | Percursiva_2           | 0.01   |  0.6   |  0     |  0.6   |
+  | Pecursiva_1            | 0.01   |  0.4   |  0     |  0.1   |
+  | Pecursiva_2            | 0.01   |  0.6   |  0     |  0.6   |
   | Plana       	         |        |        |        |        |
 
 Para los cuatro casos, deberá incluir una gráfica en la que se visualice claramente la curva ADSR. Deberá añadir la
