@@ -60,18 +60,14 @@ visualizar el funcionamiento de la curva ADSR.
 #### PLANA
 <img src="PLANA.jpeg" width="300" align="center"> 
 
->La plana como cabía esperar no tiene tiempo de *decay*. Los otros tiempos son 
+>La plana como cabía esperar no tiene tiempo de *decay* y el cien por cien del tiempo está en *sustain* con los casi nulos tiempos de *attack* y *release* necesarios para que se levante y caiga la onda.  
 
   | **Envolventes ADSR**   | ADSR_A | ADSR_D | ADSR_S | ADSR_R |
   |------------------------|:------:|:------:|:------:|:------:|
   | Genérica     	         | 0.3    |  0.5   |  0.4   |  0.2   |
   | Pecursiva_1            | 0.01   |  0.4   |  0     |  0.1   |
   | Pecursiva_2            | 0.01   |  0.6   |  0     |  0.6   |
-  | Plana       	         |        |        |        |        |
-
-Para los cuatro casos, deberá incluir una gráfica en la que se visualice claramente la curva ADSR. Deberá añadir la
-información necesaria para su correcta interpretación, aunque esa información puede reducirse a colocar etiquetas y
-títulos adecuados en la propia gráfica (se valorará positivamente esta alternativa).
+  | Plana       	         | 0.05   |  0     |  1     |  0.05  |
 
 ### Instrumentos Dumb y Seno.
 
