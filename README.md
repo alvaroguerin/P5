@@ -198,22 +198,26 @@ void Seno::command(long cmd, long note, long vel) {
   *literatura*).
   
   #### SEÑAL NORMAL
-  <img src="señalnormal.jpeg" width="500" align="center">
+  <img src="señalnormal.jpeg" width="750" align="center">
   
   #### TREMOLO
-  <img src="tremolo.jpeg" width="500" align="center">
+  <img src="tremolo.jpeg" width="750" align="center">
   
   > si nos fijamos en el trémolo vemos variación en la 'waveform' i el 'spectrogram'
   
   
   #### VIBRATO
-  <img src="vibrato.jpeg" width="500" align="center">
+  <img src="vibrato.jpeg" width="750" align="center">
   
   > en el vibrato vemos variación en el 'pitch contour'
   
 - Si ha generado algún efecto por su cuenta, explique en qué consiste, cómo lo ha implementado y qué resultado ha
   producido. Incluya, en el directorio `work/ejemplos`, los ficheros necesarios para apreciar el efecto, e indique,
   a continuación, la orden necesaria para generar los ficheros de audio usando el programa `synth`.
+  
+  > El comando que utilizamos para implemtar el efecto es el siguiente:
+  `synth dumb.orc effects.sco tremolo.wav -e effects.orc`
+  > En la que usamos la envolvente dumb y hemos modificado la escala doremi.sco llamándola effects.sco añadiendo el efecto (en este caso tremolo) a lo largo de toda la escala.
 
 ### Síntesis FM.
 
