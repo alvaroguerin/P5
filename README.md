@@ -177,7 +177,7 @@ for (unsigned int i=0; i<x.size(); ++i) {
   <img src="efectossonoros1.jpeg" width="500" align="center">
   <br/>
   
-	  > El trémolo consiste en modular una señal en amplitud (AM). Es decir, genera el mismo efecto que si subimos y bajamos el volumen continuamente 
+  	> El trémolo consiste en modular una señal en amplitud (AM). Es decir, genera el mismo efecto que si subimos y bajamos el volumen continuamente 
 
   <br/>
   <br/>
