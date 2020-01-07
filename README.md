@@ -49,9 +49,7 @@ visualizar el funcionamiento de la curva ADSR.
     
    >Estas dos gráficas presentan un tiempo de *decay* muy largo acompañado de un tiempo final de *release* muy largo también en el caso de la primera y notable en la segunda. Seguidamente, los tiempos de *attack* y de *sustain* son tendiendo a nulos y nulos respectivamente.
     
-    
-  - Debera representar en esta memoria **ambos** posibles finales de la nota.
-  
+   
 * Un instrumento *plano*, como los de cuerdas frotadas (violines y semejantes) o algunos de viento. En ellos, el
   ataque es relativamente rápido hasta alcanzar el nivel de mantenimiento (sin sobrecarga), y la liberación también
   es bastante rápida.
@@ -64,10 +62,10 @@ visualizar el funcionamiento de la curva ADSR.
 ##### Parámetros Finales
   | **Envolventes ADSR**   | ADSR_A | ADSR_D | ADSR_S | ADSR_R |
   |------------------------|:------:|:------:|:------:|:------:|
-  | Genérica     	         | 0.3    |  0.5   |  0.4   |  0.2   |
+  | Genérica               | 0.3    |  0.5   |  0.4   |  0.2   |
   | Pecursiva_1            | 0.01   |  0.4   |  0     |  0.1   |
   | Pecursiva_2            | 0.01   |  0.6   |  0     |  0.6   |
-  | Plana       	         | 0.05   |  0     |  1     |  0.05  |
+  | Plana                  | 0.05   |  0     |  1     |  0.05  |
 
 ### Instrumentos Dumb y Seno.
 
@@ -165,7 +163,7 @@ for (unsigned int i=0; i<x.size(); ++i) {
   }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
   
-  >
+  > 
   
 - Si ha implementado la síntesis por tabla almacenada en fichero externo, incluya a continuación el código del método
   `command()`.
@@ -199,8 +197,19 @@ void Seno::command(long cmd, long note, long vel) {
   la señal generada (se valorará que la explicación esté contenida en las propias gráficas, sin necesidad de
   *literatura*).
   
+  #### SEÑAL NORMAL
+  <img src="señalnormal.jpeg" width="500" align="center">
+  
+  #### TREMOLO
+  <img src="tremolo.jpeg" width="500" align="center">
+  
+  > si nos fijamos en el trémolo vemos variación en la 'waveform' i el 'spectrogram'
   
   
+  #### VIBRATO
+  <img src="vibrato.jpeg" width="500" align="center">
+  
+  > en el vibrato vemos variación en el 'pitch contour'
   
 - Si ha generado algún efecto por su cuenta, explique en qué consiste, cómo lo ha implementado y qué resultado ha
   producido. Incluya, en el directorio `work/ejemplos`, los ficheros necesarios para apreciar el efecto, e indique,
