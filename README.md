@@ -163,31 +163,7 @@ for (unsigned int i=0; i<x.size(); ++i) {
   }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
   
-  > 
-  
-- Si ha implementado la síntesis por tabla almacenada en fichero externo, incluya a continuación el código del método
-  `command()`.
-  
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.sh
-void Seno::command(long cmd, long note, long vel) {
-  if (cmd == 9) {		//'Key' pressed: attack begins
-    bActive = true;
-    adsr.start();
-    index = 0;
-	  A = vel / 127.;
-    fase = 0;
-    f0 = pow(2,(note-69.)/12.)*440;
-    nota = (tbl.size()/(double) SamplingRate)*f0;
-  }
-  else if (cmd == 8) {	//'Key' released: sustain ends, release begins
-    adsr.stop();
-  }
-  else if (cmd == 0) {	//Sound extinguished without waiting for release to end
-    adsr.end();
-  }
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-  
+  > Para asignar un valor a la señal a partir de los contenidos de la tabla hemos definido una nota que queríamos tocar, y acto seguido hemos definido una velocidad acorde. Seguidamente, tuvimos en cuenta a priori que puede ser que nos quedemos a medias yendo de un índice a otro y decidimos una solución como es la interpolación. Con la interpolación buscamos como prioridad que los índices siempre estuviesen en un "cajón" disponible de la tabla, siendo esos unos con índices de números enteros, ya que la velocidad definida en primer lugar puede no ser un múltiplo de la frecuencia.
 
 
 ### Efectos sonoros.
@@ -196,6 +172,15 @@ void Seno::command(long cmd, long note, long vel) {
   Deberá explicar detalladamente cómo se manifiestan los parámetros del efecto (frecuencia e índice de modulación) en
   la señal generada (se valorará que la explicación esté contenida en las propias gráficas, sin necesidad de
   *literatura*).
+  
+  
+  <img src="efectossonoros1.jpeg" width="750" align="center">
+  > El trémolo consiste en modular una señal en amplitud (AM). Es decir, genera el mismo efecto que si subimos y bajamos el volumen continuamente
+  
+  <img src="efectossonoros2.jpeg" width="750" align="center">
+  > El vibrato se basa en modular la señal en frecuencia (FM) o lo que es lo mismo: subir y bajar el tono.
+  
+  >Hemos analizado la misma señal usando en primer lugar el efecto del trémolo y seguidamente el vibrato, podemos ver los resultados obtenidos y las variaciones que supone cada uno de estos efectos:
   
   #### SEÑAL NORMAL
   <img src="señalnormal3.jpeg" width="750" align="center">
