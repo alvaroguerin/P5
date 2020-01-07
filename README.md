@@ -144,7 +144,7 @@ const vector<float> & Seno::synthesize() {
   for (unsigned int i=0; i<x.size(); ++i) {
     fase = fmod(fase+nota,tbl.size());
     index = floor(fase);
-    x[i] = A*(tbl[index]+(tbl[index+1]-tbl[index])*(fase-index));
+    x[i] = A*(tbl[index]+(tbl[index++]-tbl[index])*(fase-index));
   }
   adsr(x); //apply envelope to x and update internal status of ADSR
 
@@ -157,13 +157,21 @@ const vector<float> & Seno::synthesize() {
   una gráfica en la que se vean claramente (use pelotitas en lugar de líneas) los valores de la tabla y los de la
   señal generada.
   
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.sh
+for (unsigned int i=0; i<x.size(); ++i) {
+    fase = fmod(fase+nota,tbl.size());
+    index = floor(fase);
+    x[i] = A*(tbl[index]+(tbl[index+1]-tbl[index])*(fase-index));
+  }
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
   
+  >
   
 - Si ha implementado la síntesis por tabla almacenada en fichero externo, incluya a continuación el código del método
   `command()`.
   
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.sh
-  void Seno::command(long cmd, long note, long vel) {
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.sh
+void Seno::command(long cmd, long note, long vel) {
   if (cmd == 9) {		//'Key' pressed: attack begins
     bActive = true;
     adsr.start();
@@ -180,7 +188,9 @@ const vector<float> & Seno::synthesize() {
     adsr.end();
   }
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+  
+
 
 ### Efectos sonoros.
 
