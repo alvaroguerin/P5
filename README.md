@@ -174,13 +174,22 @@ for (unsigned int i=0; i<x.size(); ++i) {
   *literatura*).
   
   
-  <img src="efectossonoros1.jpeg" width="750" align="center">
-  > El trémolo consiste en modular una señal en amplitud (AM). Es decir, genera el mismo efecto que si subimos y bajamos el volumen continuamente
+  <img src="efectossonoros1.jpeg" width="500" align="center">
+  <br/>
   
-  <img src="efectossonoros2.jpeg" width="750" align="center">
-  > El vibrato se basa en modular la señal en frecuencia (FM) o lo que es lo mismo: subir y bajar el tono.
+	  > El trémolo consiste en modular una señal en amplitud (AM). Es decir, genera el mismo efecto que si subimos y bajamos el volumen continuamente 
+
+  <br/>
+  <br/>
+  <br/>
+  <img src="efectossonoros2.jpeg" width="500" align="center">
+  <br/>
   
-  >Hemos analizado la misma señal usando en primer lugar el efecto del trémolo y seguidamente el vibrato, podemos ver los resultados obtenidos y las variaciones que supone cada uno de estos efectos:
+  	> El vibrato se basa en modular la señal en frecuencia (FM) o lo que es lo mismo: subir y bajar el tono.
+  <br/>
+  <br/>
+  
+ 	 >Hemos analizado la misma señal usando en primer lugar el efecto del trémolo y seguidamente el vibrato, podemos ver los resultados obtenidos y las variaciones que supone cada uno de estos efectos:
   
   #### SEÑAL NORMAL
   <img src="señalnormal3.jpeg" width="750" align="center">
