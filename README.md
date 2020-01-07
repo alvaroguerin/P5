@@ -28,7 +28,7 @@ visualizar el funcionamiento de la curva ADSR.
 * Un instrumento con una envolvente ADSR genérica, para el que se aprecie con claridad cada uno de sus parámetros:
   ataque (A), caída (D), mantenimiento (S) y liberación (R).
   
-    <img src="img/GENERICA.jpeg" width="300" align="center"> 
+    <img src="GENERICA.jpeg" width="300" align="center"> 
     
     Esta gráfica presenta un tiempo de *decay* largo acompañado de un tiempo final de *release* muy corto. Seguidamente, los tiempos de * attack* y de *sustain* notables pero no tan amplios como el de *decay*. 
   
@@ -37,7 +37,7 @@ visualizar el funcionamiento de la curva ADSR.
   - Para un instrumento de este tipo, tenemos dos situaciones posibles:
     * El intérprete mantiene la nota *pulsada* hasta su completa extinción.
     
-    <img src="img/PECURSIVA_1.jpeg" width="300" align="center">  
+    <img src="PECURSIVA_1.jpeg" width="300" align="center">  
     
     Esta gráfica presenta un tiempo de *decay* largo acompañado de un tiempo final de *release* muy corto. Seguidamente, los tiempos de * attack* y de *sustain* notables pero no tan amplios como el de *decay*. 
   
@@ -45,7 +45,7 @@ visualizar el funcionamiento de la curva ADSR.
     * El intérprete da por finalizada la nota antes de su completa extinción, iniciándose una disminución rápida del
       sonido hasta su finalización.
       
-    <img src="img/PECURSIVA_2.jpeg" width="300" align="center">   
+    <img src="PECURSIVA_2.jpeg" width="300" align="center">   
       
   - Debera representar en esta memoria **ambos** posibles finales de la nota.
 * Un instrumento *plano*, como los de cuerdas frotadas (violines y semejantes) o algunos de viento. En ellos, el
