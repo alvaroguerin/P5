@@ -29,7 +29,7 @@ visualizar el funcionamiento de la curva ADSR.
   ataque (A), caída (D), mantenimiento (S) y liberación (R).
   
     #### GENÉRICA
-    <img src="GENERICA.jpeg" width="300" align="center"> 
+    <img src="GENERICA.jpeg" width="500" align="center"> 
     
    > Esta gráfica presenta un tiempo de *decay* largo acompañado de un tiempo final de *release* muy corto. Seguidamente, los tiempos de * attack* y de *sustain* notables pero no tan amplios como el de *decay*. 
   
@@ -39,13 +39,13 @@ visualizar el funcionamiento de la curva ADSR.
     * El intérprete mantiene la nota *pulsada* hasta su completa extinción.
     
     #### PERCUSIVA_1
-    <img src="PECURSIVA_1.jpeg" width="300" align="center">  
+    <img src="PECURSIVA_1.jpeg" width="500" align="center">  
     
     * El intérprete da por finalizada la nota antes de su completa extinción, iniciándose una disminución rápida del
       sonido hasta su finalización.
     
     #### PECURSIVA_2
-    <img src="PECURSIVA_2.jpeg" width="300" align="center"> 
+    <img src="PECURSIVA_2.jpeg" width="500" align="center"> 
     
    >Estas dos gráficas presentan un tiempo de *decay* muy largo acompañado de un tiempo final de *release* muy largo también en el caso de la primera y notable en la segunda. Seguidamente, los tiempos de *attack* y de *sustain* son tendiendo a nulos y nulos respectivamente.
     
@@ -58,10 +58,10 @@ visualizar el funcionamiento de la curva ADSR.
   
   
 #### PLANA
-<img src="PLANA.jpeg" width="300" align="center"> 
+<img src="PLANA.jpeg" width="500" align="center"> 
 
->La plana como cabía esperar no tiene tiempo de *decay* y el cien por cien del tiempo está en *sustain* con los casi nulos tiempos de *attack* y *release* necesarios para que se levante y caiga la onda.  
-
+>La plana como cabía esperar no tiene tiempo de *decay* y el cien por cien del tiempo está en *sustain* con los casi nulos tiempos de *attack* y *release* necesarios para que se levante y caiga la onda. Cabe destacar que estas envolventes no sólo se utilizan para la amplitud de la señal: también pueden usarse para controlar la evolución temporal de otros parámetros.  
+##### Parámetros Finales
   | **Envolventes ADSR**   | ADSR_A | ADSR_D | ADSR_S | ADSR_R |
   |------------------------|:------:|:------:|:------:|:------:|
   | Genérica     	         | 0.3    |  0.5   |  0.4   |  0.2   |
@@ -75,11 +75,112 @@ Implemente el instrumento `Seno` tomando como modelo el `InstrumentDumb`. La se�
 búsqueda de los valores en una tabla.
 
 - Incluya, a continuación, el código del fichero `seno.cpp` con los métodos de la clase Seno.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.sh
+ #include <iostream>
+#include <math.h>
+#include "seno.h"
+#include "keyvalue.h"
+
+#include <stdlib.h>
+
+using namespace upc;
+using namespace std;
+
+Seno::Seno(const std::string &param) 
+  : adsr(SamplingRate, param) {
+  bActive = false;
+  x.resize(BSIZE);
+
+  /*
+    You can use the class keyvalue to parse "param" and configure your instrument.
+    Take a Look at keyvalue.h    
+  */
+  KeyValue kv(param);
+  int N;
+
+  if (!kv.to_int("N",N))
+    N = 40; //default value
+  
+  //Create a tbl with one period of a sinusoidal wave
+  tbl.resize(N);
+  float phase = 0, step = 2 * M_PI /(float) N;
+  index = 0;
+  for (int i=0; i < N ; ++i) {
+    tbl[i] = sin(phase);
+    phase += step;
+  }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.sh
+void Seno::command(long cmd, long note, long vel) {
+  if (cmd == 9) {		//'Key' pressed: attack begins
+    bActive = true;
+    adsr.start();
+    index = 0;
+	  A = vel / 127.;
+    fase = 0;
+    f0 = pow(2,(note-69.)/12.)*440;
+    nota = (tbl.size()/(double) SamplingRate)*f0;
+  }
+  else if (cmd == 8) {	//'Key' released: sustain ends, release begins
+    adsr.stop();
+  }
+  else if (cmd == 0) {	//Sound extinguished without waiting for release to end
+    adsr.end();
+  }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.sh
+const vector<float> & Seno::synthesize() {
+  if (not adsr.active()) {
+    x.assign(x.size(), 0);
+    bActive = false;
+    return x;
+  }
+  else if (not bActive)
+    return x;
+
+  for (unsigned int i=0; i<x.size(); ++i) {
+    fase = fmod(fase+nota,tbl.size());
+    index = floor(fase);
+    x[i] = A*(tbl[index]+(tbl[index+1]-tbl[index])*(fase-index));
+  }
+  adsr(x); //apply envelope to x and update internal status of ADSR
+
+  return x;
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 - Explique qué método se ha seguido para asignar un valor a la señal a partir de los contenidos en la tabla, e incluya
   una gráfica en la que se vean claramente (use pelotitas en lugar de líneas) los valores de la tabla y los de la
   señal generada.
+  
+  
+  
 - Si ha implementado la síntesis por tabla almacenada en fichero externo, incluya a continuación el código del método
   `command()`.
+  
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.sh
+  void Seno::command(long cmd, long note, long vel) {
+  if (cmd == 9) {		//'Key' pressed: attack begins
+    bActive = true;
+    adsr.start();
+    index = 0;
+	  A = vel / 127.;
+    fase = 0;
+    f0 = pow(2,(note-69.)/12.)*440;
+    nota = (tbl.size()/(double) SamplingRate)*f0;
+  }
+  else if (cmd == 8) {	//'Key' released: sustain ends, release begins
+    adsr.stop();
+  }
+  else if (cmd == 0) {	//Sound extinguished without waiting for release to end
+    adsr.end();
+  }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Efectos sonoros.
 
@@ -87,6 +188,10 @@ búsqueda de los valores en una tabla.
   Deberá explicar detalladamente cómo se manifiestan los parámetros del efecto (frecuencia e índice de modulación) en
   la señal generada (se valorará que la explicación esté contenida en las propias gráficas, sin necesidad de
   *literatura*).
+  
+  
+  
+  
 - Si ha generado algún efecto por su cuenta, explique en qué consiste, cómo lo ha implementado y qué resultado ha
   producido. Incluya, en el directorio `work/ejemplos`, los ficheros necesarios para apreciar el efecto, e indique,
   a continuación, la orden necesaria para generar los ficheros de audio usando el programa `synth`.
