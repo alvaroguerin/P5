@@ -1,0 +1,5 @@
+# List of files installed by Meson
+# Does not contain files installed by custom scripts.
+/home/saraorio/PAV/lib/libpav.a
+/home/saraorio/PAV/bin/synth
+/home/saraorio/PAV/bin/midi2skini

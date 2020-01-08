@@ -1,0 +1,8 @@
+[options]
+prefix = /home/saraorio/PAV
+libdir = lib
+buildtype = release
+backend = ninja
+
+[properties]
+

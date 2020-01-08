@@ -180,11 +180,6 @@ namespace upc {
 	    if (i->second->is_active())
 	      anyActive = true;
       }
-	  else {
-		for (Instrument::Effects::iterator e = i->second->effects.begin(); e != i->second->effects.end(); e++) {
-			e->second->command(0);
-		}
-      }
     }
 
     for (unsigned n = 0; n < xt.size(); ++n)
